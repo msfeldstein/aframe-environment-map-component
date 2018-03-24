@@ -9,6 +9,12 @@ Depends on [aframe-environment-component](https://github.com/feiss/aframe-enviro
 
 For [A-Frame](https://aframe.io).
 
+Before
+<img src="/assets/before.jpg?raw=true" width=256 height=256/>
+
+After
+<img src="/assets/after.jpg?raw=true" width=256 height=256/>
+
 ### API
 
 | Property | Description | Default Value |
