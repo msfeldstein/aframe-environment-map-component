@@ -17,6 +17,7 @@ For [A-Frame](https://aframe.io).
 
 | Property | Description | Default Value |
 | -------- | ----------- | ------------- |
+| position | Position of the CubeCamera to capture the environment.  Useful in case you need to get above an environments ground plane. | {x: 0, y: 1, z: 0}
 | target | querySelector string representing any environment elements.  Anything matching this will be rendered in the environment map image | .environment (this is what is used in aframe-environment-component)        
 
 ### Installation

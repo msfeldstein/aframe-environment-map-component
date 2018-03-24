@@ -8,7 +8,8 @@ if (typeof AFRAME === 'undefined') {
 
 AFRAME.registerComponent('environment-map', {
   schema: {
-    position: {type: 'vec3'}
+    position: {type: 'vec3', default: '0 1 0'},
+    target: {type: 'string', default: '.environment'}
   },
 
   multiple: false,
@@ -39,8 +40,9 @@ AFRAME.registerComponent('environment-map', {
       oldVisibilities[o.uuid] = o.visible
       o.visible = !envObjects || o.type === 'Scene'
     })
+    console.log(this.data.target)
     // Now iterate through all the env objects and either hide or show them
-    document.querySelectorAll('.environment').forEach(el => {
+    document.querySelectorAll(this.data.target).forEach(el => {
       el.object3D.traverse(o => {
         o.visible = envObjects
       })
@@ -56,6 +58,8 @@ AFRAME.registerComponent('environment-map', {
       const renderer = this.el.sceneEl.renderer
       const scene = this.el.sceneEl.object3D
       const camera = new THREE.CubeCamera(1, 100000, 512)
+      console.log(this.data.position)
+      camera.position.copy(this.data.position)
       camera.update(renderer, scene)
       const generator = new THREE.PMREMGenerator( camera.renderTarget.texture)
       generator.update(renderer)
