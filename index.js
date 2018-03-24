@@ -57,6 +57,8 @@ AFRAME.registerComponent('environment-map', {
     this.applyToEnvironmentObjects(_ => {
       const renderer = this.el.sceneEl.renderer
       const scene = this.el.sceneEl.object3D
+      // We need to flip the scene horizontally so things reflect correctly
+      scene.scale.x = -1
       const camera = new THREE.CubeCamera(1, 100000, 512)
       console.log(this.data.position)
       camera.position.copy(this.data.position)
@@ -65,6 +67,7 @@ AFRAME.registerComponent('environment-map', {
       generator.update(renderer)
       const packer = new THREE.PMREMCubeUVPacker(generator.cubeLods)
       packer.update(renderer)
+      scene.scale.x = 1
       this.envMap = packer.CubeUVRenderTarget.texture
     }, true)
     
